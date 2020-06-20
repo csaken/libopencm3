@@ -722,11 +722,11 @@ void rcc_clock_setup_pll(const struct rcc_clock_scale *clock)
 	}
 
 	/* Set the VOS scale mode */
-	rcc_peripheral_enable_clock(&RCC_APB1ENR, RCC_PWR);
+	rcc_periph_clock_enable(RCC_PWR);
 	pwr_set_vos_scale(clock->voltage_scale);
 
 	/*
-	 * Set prescalers for AHB, ADC, ABP1, ABP2.
+	 * Set prescalers for AHB, ADC, APB1, APB2.
 	 * Do this before touching the PLL (TODO: why?).
 	 */
 	rcc_set_hpre(clock->hpre);
